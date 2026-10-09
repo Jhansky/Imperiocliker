@@ -1,11 +1,10 @@
-
 name: Crear APK de Imperio Clicker
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'ImperioClickerAndroid.zip'
+      - 'ImperioClickerAndroid_CORREGIDO.zip'
       - '.github/workflows/android.yml'
 
 jobs:
@@ -23,16 +22,15 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Descomprimir proyecto
-        run: unzip ImperioClickerAndroid.zip
+      - name: Descomprimir proyecto corregido
+        run: unzip ImperioClickerAndroid_CORREGIDO.zip
 
       - name: Compilar APK
         run: |
-          cd ImperioClickerAndroid
+          cd ImperioClickerAndroid_FIXED
           gradle assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: ImperioClicker-APK
-          path: ImperioClickerAndroid/app/build/outputs/apk/debug/app-debug.apk
-          
+          path: ImperioClickerAndroid_FIXED/app/build/outputs/apk/debug/app-debug.apk
